@@ -36,4 +36,4 @@ app.use('/user', usersController);
 //connected to port 9000
 app.listen(9000, () => {
 	console.log('listening on port 9000');
-}
+});

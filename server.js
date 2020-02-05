@@ -21,7 +21,6 @@ app.use(session({
 	secret: '1a2B3c4Z5y',
 	resave: false,
 	saveUninitialized: false
-
 }));
 
 

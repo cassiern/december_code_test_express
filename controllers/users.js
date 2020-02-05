@@ -6,24 +6,27 @@ const User = require('../models/user');
 
 //CREATE (REGISTER) user
 router.post('/register', async(req, res) => {
-
+	
 		const password = req.body.password;
 		const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(12))
 		console.log(hashedPassword, '<-- users hashed password');
 
 		req.body.password = hashedPassword;
 		console.log('RIGHT BEFORE THE TRY IN REGI ROUTE')
-
+		console.log(req.body)
 	try{
-		const createdUser = await User.create({email: req.body.email});
+		const createdUser = await User.create(req.body);
 		console.log(createdUser, '<-- USER CREATED');
 
 		req.session.userId = createdUser._id;
 		req.session.email = createdUser.email;
 		req.session.logged = true;
-
-		res.json({
-			status: {
+		res.data = {
+						"email":  req.body.email, "id": req.session.userId}
+		res.json(
+				{ 
+				data: res.data,
+				status: {
 				code: 200,
 				message: 'User logged in'
 			}
@@ -52,7 +55,9 @@ router.post('/login', async(req, res) => {
 				req.session.userId = userExists._id;
 				req.session.email = userExists.email;
 				req.session.logged = true;
+				res.data = { "email": req.session.email, "id": req.session.userId}
 				res.json({
+					data: res.data,
 					status: {
 						code: 200,
 						message: 'User logged in'
@@ -83,7 +88,7 @@ router.post('/login', async(req, res) => {
 
 
 
-//DELETE user
+//Logout user
 router.get('/logout', (req, res) => {
 	req.session.destroy((err) => {
 		if(err){

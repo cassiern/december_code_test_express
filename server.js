@@ -3,6 +3,7 @@ const app     = express();
 const bodyParser = require('body-parser');
 const cors    = require('cors');
 const session = require('express-session');
+require('dotenv').config()
 
 require('./db/db');
 
@@ -33,6 +34,6 @@ app.use('/user', usersController);
 
 
 //connected to port 9000
-app.listen(9000, () => {
+app.listen(process.env.PORT, () => {
 	console.log('listening on port 9000');
 });

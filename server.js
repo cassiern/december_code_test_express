@@ -33,7 +33,9 @@ const usersController = require('./controllers/users.js');
 //url path to controllers
 app.use('/posts', postsController);
 app.use('/user', usersController);
-app.user('/', 'hello')
+app.get('/', (req, res) => {
+	res.send('welcome')
+})
 
 //connected to port 9000
 app.listen(process.env.PORT, () => {

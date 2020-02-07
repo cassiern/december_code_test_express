@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost/travel-pin-final';
+const connectionString = process.env.MONGODB_URI;
 
 const db = mongoose.connection;
 

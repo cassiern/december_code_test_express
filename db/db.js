@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
 
 const connectionString = process.env.MONGODB_URI;
+const db = mongoose.connection;
 
-mongoose.connect(process.env.MONGODB_URI, {
+
+mongoose.connect(connectionString, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
-	useUnifiedTopology: true,
-	useFindAndModify: false
 });
 
-mongoose.connection.on('connected', () => {
+db.on('connected', () => {
 	console.log('Mongoose is connected')
 });
 
-mongoose.connection.on('error', (err) => {
+db.on('error', (err) => {
 	console.log(err, 'Mongoose failed to connect')
 });
 
-mongoose.connection.on('disconnected', () => {
+db.on('disconnected', () => {
 	console.log('Mongoose is disconnected')
 });

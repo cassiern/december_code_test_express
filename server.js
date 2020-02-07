@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 const corsOptions = {
-	origin: 'https://travelers-pin-board.herokuapp.com/',
+	origin: 'https://travelers-pin-board.herokuapp.com',
 	credentials: true,
 	optionsSuccessStatus: 200
 }

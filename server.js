@@ -17,11 +17,11 @@ const corsOptions = {
 	credentials: true,
 	optionsSuccessStatus: 200
 }
-app.use(cors(corsOptions));
+const options = app.use(cors(corsOptions));
 
 app.use(session({
 	secret: '1a2B3c4Z5y',
-	store: new MongoStore(corsOptions)
+	store: new MongoStore(options)
 }));
 
 

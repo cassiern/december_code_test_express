@@ -21,7 +21,9 @@ app.use(cors(corsOptions));
 
 app.use(session({
 	secret: '1a2B3c4Z5y',
-	store: new MongoStore(options)
+	resave: false,
+	saveUninitialized: false
+	// store: new MongoStore({mongooseConnection: connection})
 }));
 
 

@@ -13,11 +13,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 const corsOptions = {
-	origin: 'https://travelers-pin-board.herokuapp.com/',
+	origin: process.env.MONGODB_URI,
 	credentials: true,
 	optionsSuccessStatus: 200
 }
-const options = app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use(session({
 	secret: '1a2B3c4Z5y',
